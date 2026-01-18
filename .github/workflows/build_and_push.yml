@@ -55,9 +55,14 @@ jobs:
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-            - name: Push to dist branch
-              run: |
-                  git add -f dist
-                  git status
-                  git commit -m "Build: ${BUILD_COMMIT_SHA}"
-                  git push -f origin dist
+            - name: Stage 'dist'
+              run: git add -f dist
+
+            - name: Check git status
+              run: git status
+
+            - name: Commit 'dist'
+              run: 'git commit -m "Build: ${BUILD_COMMIT_SHA}"'
+
+            - name: Push to 'dist' branch
+              run: git push -f origin dist
