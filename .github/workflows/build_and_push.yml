@@ -4,6 +4,12 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "src/**"
+            - "package.json"
+            - "pnpm-lock.yaml"
+            - "pnpm-workspace.yaml"
+            - "action.yml"
 
 jobs:
     build-and-push:
