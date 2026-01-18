@@ -25,7 +25,9 @@ jobs:
               run: pnpm i
 
             - name: Save commit SHA
-              run: BUILD_COMMIT_SHA=$(git rev-parse HEAD)
+              run: |
+                  BUILD_COMMIT_SHA=$(git rev-parse HEAD)
+                  echo ${BUILD_COMMIT_SHA}
 
             - name: Build project
               run: pnpm run build
