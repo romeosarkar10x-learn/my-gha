@@ -28,6 +28,7 @@ jobs:
               run: |
                   export BUILD_COMMIT_SHA=$(git rev-parse HEAD)
                   echo ${BUILD_COMMIT_SHA}
+                  echo ${BUILD_COMMIT_SHA} >> ${GITHUB_ENV}
 
             - name: Build project
               run: pnpm run build
