@@ -19,3 +19,6 @@ jobs:
 
             - uses: ./
               name: Run 'my-gha'
+              with:
+                  name: "Romeo Sarkar"
+                  languages: "ASM,C,C++,Java,JavaScript,TypeScript,Go,Python"
