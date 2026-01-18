@@ -6,8 +6,8 @@ import commonJS from "@rollup/plugin-commonjs";
 const config = {
     input: "src/index.ts",
     output: {
-        dir: "dist",
         format: "cjs",
+        file: "dist/index.cjs",
     },
     plugins: [resolve(), typescript(), commonJS()],
 };

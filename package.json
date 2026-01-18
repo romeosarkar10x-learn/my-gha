@@ -4,6 +4,7 @@
     "description": "My custom 'Github Action'",
     "type": "module",
     "scripts": {
+        "build": "rollup -c rollup.config.js",
         "check-formatting": "prettier --check **/*.{js,ts,json}",
         "format": "prettier --write **/*.{js,ts,json}",
         "test": "echo \"Error: no test specified\" && exit 1"
