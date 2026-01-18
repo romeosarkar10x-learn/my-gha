@@ -1,0 +1,19 @@
+name: Run 'my-gha'
+on:
+    workflow_run:
+        workflows: ["Build and push to 'dist' branch"]
+        types:
+            - completed
+
+jobs:
+    run-action:
+        name: Run 'my-gha'
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+        steps:
+            - uses: actions/checkout@v6
+              name: Checkout repository
+
+            - uses: ./
+              name: Run 'my-gha'
