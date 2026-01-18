@@ -1,0 +1,42 @@
+name: Build and push
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "src/**"
+            - "package.json"
+            - "pnpm-lock.yaml"
+            - "pnpm-workspace.yaml"
+            - "action.yml"
+
+jobs:
+    build-and-push:
+        name: Build and push
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+              name: Checkout repository
+
+            - uses: actions/setup-node@v6
+              name: Set up node.js
+
+            - uses: pnpm/action-setup@v4
+              name: Set up pnpm
+
+            - run: pnpm i
+              name: Install dependencies
+
+            - run: pnpm run build
+              name: Build project
+
+            - name: Push to dist branch
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                  git checkout -b dist
+                  git add -f dist
+                  git commit -m "Build: $(git rev-parse HEAD)"
+                  git push -f origin dist
