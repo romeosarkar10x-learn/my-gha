@@ -47,6 +47,9 @@ jobs:
             - name: Restore dist from temporary location
               run: mv /tmp/new_dist dist
 
+            - name: List all files and directories
+              run: ls -la
+
             - name: Update 'user.name' and 'user.email'
               run: |
                   git config --local user.name "github-actions[bot]"
