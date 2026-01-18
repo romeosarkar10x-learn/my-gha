@@ -42,6 +42,9 @@ jobs:
             - name: Backup dist to a temporary location
               run: mv dist /tmp/new_dist
 
+            - name: Backup action.yml to a temporary location
+              run: mv action.yml /tmp/action.yml
+
             - name: Fetch 'dist' branch
               run: git fetch origin dist:dist || git switch --orphan dist
 
@@ -54,13 +57,16 @@ jobs:
             - name: Restore dist from temporary location
               run: mv /tmp/new_dist dist
 
+            - name: Restory action.hml from temporary location
+              run: mv /tmp/action.yml .
+
             - name: Update 'user.name' and 'user.email'
               run: |
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
             - name: Stage 'dist'
-              run: git add -f dist
+              run: git add -f dist action.yml
 
             - name: Check git status
               run: git status
