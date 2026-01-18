@@ -15,8 +15,38 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v6
 
-            - name: See contents of .git/config file
-              run: cat .git/config
+            - name: Set up node.js
+              uses: actions/setup-node@v6
 
-            - name: Get branches
-              run: git --no-pager branch -a
+            - uses: pnpm/action-setup@v4
+              name: Set up pnpm
+
+            - name: Install dependencies
+              run: pnpm i
+
+            - name: Build project
+              run: pnpm run build
+
+            - name: Backup dist to a temporary location
+              run: mv dist /tmp/new_dist
+
+            - name: Fetch 'dist' branch
+              run: git fetch origin dist:dist || git switch --orphan dist
+
+            - name: Switch to 'dist' branch
+              run: git switch dist
+
+            - name: Remove current dist
+              run: rm -rf dist
+
+            - name: Restore dist from temporary location
+              run: mv /tmp/new_dist dist
+
+            - name: Push to dist branch
+              run: |
+                  git config --local user.name "github-actions[bot]"
+                  git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                  git add -f dist
+                  git commit -m "Build: $(git rev-parse HEAD)"
+                  git push -f origin dist
