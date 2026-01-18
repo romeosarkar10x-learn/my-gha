@@ -7,7 +7,7 @@ async function main(): Promise<void> {
     const programmingLanguages = core.getInput("languages", { required: true });
 
     core.info(`Hi ${name},`);
-    core.info(`I see you are proficient in ${programmingLanguages.split(",")}`);
+    core.info(`I see you are proficient in ${programmingLanguages.split(",").join(", ")}`);
 }
 
 main();
