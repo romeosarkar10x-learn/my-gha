@@ -1,0 +1,11 @@
+name: My custom 'Github Action'
+description: My custom 'Github Action'
+author: Romeo Sarkar
+
+branding:
+    color: blue
+    icon: x
+
+runs:
+    using: node24
+    main: dist/index.js
