@@ -47,9 +47,6 @@ jobs:
             - name: Restore dist from temporary location
               run: mv /tmp/new_dist dist
 
-            - name: List all files and directories
-              run: ls -la
-
             - name: Update 'user.name' and 'user.email'
               run: |
                   git config --local user.name "github-actions[bot]"
@@ -62,7 +59,7 @@ jobs:
               run: git status
 
             - name: Commit 'dist'
-              run: 'git commit -m "Build: ${BUILD_COMMIT_SHA}"'
+              run: 'git commit --allow-empty -m "Build: ${BUILD_COMMIT_SHA}"'
 
             - name: Push to 'dist' branch
               run: git push -f origin dist
