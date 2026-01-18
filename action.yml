@@ -17,3 +17,6 @@ inputs:
     languages:
         description: "Comma separated list of programming languages you know"
         required: true
+    env_name:
+        description: Environment name
+        required: false
