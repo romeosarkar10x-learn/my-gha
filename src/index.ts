@@ -11,6 +11,7 @@ async function main(): Promise<void> {
 
     const env = core.getInput("env_name");
     core.info(`env: ${env}`);
+    core.info(`${env === ""}`);
 }
 
 main();
