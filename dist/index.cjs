@@ -27510,7 +27510,7 @@ async function main() {
     const name = core.getInput("name", { required: true });
     const programmingLanguages = core.getInput("languages", { required: true });
     core.info(`Hi ${name},`);
-    core.info(`I see you are proficient in ${programmingLanguages.split(",")}`);
+    core.info(`I see you are proficient in ${programmingLanguages.split(",").join(", ")}`);
 }
 main();
 /* Trigger build #3 */
