@@ -1,0 +1,14 @@
+name: Run 'my-gha'
+on: [push]
+
+jobs:
+    run-action:
+        name: Run 'my-gha'
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v6
+              name: Checkout repository
+
+            - uses: ./
+              name: Run 'my-gha'
