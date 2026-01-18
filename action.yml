@@ -9,3 +9,11 @@ branding:
 runs:
     using: node24
     main: dist/index.cjs
+
+inputs:
+    name:
+        description: "Your name"
+        required: true
+    languages:
+        description: "Comma separated list of programming languages you know"
+        required: true
