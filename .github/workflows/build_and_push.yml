@@ -24,24 +24,5 @@ jobs:
             - name: See contents of .git/config file
               run: cat .git/config
 
-            - name: Set up node.js
-              uses: actions/setup-node@v6
-
-            - uses: pnpm/action-setup@v4
-              name: Set up pnpm
-
-            - name: Install dependencies
-              run: pnpm i
-
-            - name: Build project
-              run: pnpm run build
-
-            - name: Push to dist branch
-              run: |
-                  git config --local user.name "github-actions[bot]"
-                  git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-                  git checkout -b dist
-                  git add -f dist
-                  git commit -m "Build: $(git rev-parse HEAD)"
-                  git push -f origin dist
+            - name: Get branches
+              run: git --no-pager branch -a
