@@ -14,6 +14,8 @@ jobs:
         steps:
             - uses: actions/checkout@v6
               name: Checkout repository
+              with:
+                  ref: dist
 
             - uses: ./
               name: Run 'my-gha'
