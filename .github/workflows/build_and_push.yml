@@ -42,16 +42,19 @@ jobs:
               run: git switch dist
 
             - name: Remove current dist
-              run: rm -rf dist
+              run: rm -rf dist || true
 
             - name: Restore dist from temporary location
               run: mv /tmp/new_dist dist
 
-            - name: Push to dist branch
+            - name: Update 'user.name' and 'user.email'
               run: |
                   git config --local user.name "github-actions[bot]"
                   git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+            - name: Push to dist branch
+              run: |
                   git add -f dist
+                  git status
                   git commit -m "Build: ${BUILD_COMMIT_SHA}"
                   git push -f origin dist
